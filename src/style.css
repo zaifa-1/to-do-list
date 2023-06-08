@@ -1,0 +1,504 @@
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+:root{
+    --main-color: #222222;
+    --secondary-color: #4D4D4D;
+    --compliment: #adff2f;
+    --yellow:#f7b500;
+    --compliment2: #007FFF;
+    --button-color:#fbd0e0;
+    --button-color2:#e4c0be;
+    --text-color: #e9e3e3;
+    --header-height: 6.5rem;   
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--secondary-color);
+}
+
+.header{
+    display: flex;
+
+    background-color: var(--main-color);
+
+    align-items: center;
+
+    cursor: default;
+}
+
+.logo{
+    height: 100px;
+    margin-top: 10px;
+}
+
+.header h1{
+    color: transparent;
+    background-image: linear-gradient(60deg, var(--compliment), var(--compliment2));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.main-body{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    color: var(--text-color);
+    min-height: calc(100vh - var(--header-height));
+}
+
+.left{
+    padding: 1rem;
+    position: relative;
+    background-color: var(--main-color);
+    color: var(--compliment);
+}
+
+/* left section */
+
+.today{
+    margin-bottom: 30px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.project-heading{
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: default;
+}
+
+.project{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+    list-style: none;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: 0.2s;
+    height: 1.1rem;
+    padding: 0 3px;
+}
+
+.project:hover, .today:hover{
+    font-size: 1.1rem;
+}
+
+/* delete project (X sign)*/
+
+.delete-project{
+    transition: 0.2s;
+}
+
+.project:hover .delete-project{
+    filter: brightness(0) saturate(100%) invert(100%) brightness(100%);
+
+}
+
+
+
+  /* new task button */
+
+  .add-task-btn-container{
+    position: absolute;
+    right: 50px;
+    top: calc(var(--header-height)/2);
+    transform: translateY(-50%);
+    
+  }
+
+  .add-task-btn{
+    position: relative;
+    border-radius: 50%;
+    height: 50px;
+    aspect-ratio: 1/1;
+
+    appearance: none;
+    border: none;
+    background-color: var(--secondary-color);
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+  }
+
+  .add-task-btn::before,
+  .add-task-btn::after{
+    content: '';
+
+    position: absolute;
+    height: 15px;
+    width: 5%;
+    top: 50%;
+    left: 50%;
+
+    background-color: var(--text-color);
+  }
+
+  .add-task-btn::before{
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .add-task-btn::after{
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+
+  .add-task-btn:hover{
+    background-color:#2a2a2a;
+    scale: 1.05;
+  }
+
+
+
+
+
+
+/* New task card */
+.new-task{
+    width: 650px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+
+    background-color: var(--main-color);
+    color: var(--text-color);
+
+    transition: .2s;
+
+    border-radius: 10px;
+    border: .5px solid var(--compliment);
+
+}
+
+.new-task.active{
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 10;
+}
+
+.new-task h2{
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.task-description, .task-title, .task-date{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.task-title, .task-description, .task-date, .task-submit{
+    margin: 5px 30px;
+}
+
+textarea{
+    resize: none;
+}
+
+.new-task h3{
+    margin: 15px 0 0 30px;
+}
+
+
+.todo-title, .todo-description{
+    margin: 5px 0;
+    padding: 7px 5px;
+    border-radius: 5px;
+    background-color: #dcdcdc;
+}
+
+.todo-date{
+    background-color: #dcdcdc;
+}
+
+.task-priority{
+    display: flex;
+    gap: 21px;
+    
+    color: #000;
+}
+
+input[type="radio"]{
+    appearance: none;
+}
+
+input[type="radio"]:checked + .radio{
+    background-color: var(--compliment);
+}
+
+.radio{
+    cursor: pointer;
+    background-color: var(--button-color);
+    margin: 5px 10px;
+    padding: 10px 30px;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.radio:hover{
+    background-color: var(--button-color2);
+}
+
+.error-content{
+    margin: 10px 30px;
+    font-weight: bold;
+    color: red;
+}
+
+input[type="submit"]{
+    transform: translateX(-50%);
+    margin:10px 0 10px 50%;
+
+    appearance: none;
+    border: none;
+
+    border-radius: 10px;
+    padding: 15px 50px;
+
+    cursor: pointer;
+
+    background: var(--button-color);
+
+    transition: 0.1s;
+}
+
+input[type="submit"]:hover{
+    background-color: var(--button-color2);
+}
+
+
+
+/* new project */
+
+.show-new-project-container{
+    margin:1rem 0 ;
+    padding: 10px 15px;
+
+    appearance: none;
+    
+    border: none;
+    border-radius: 20px;
+
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+
+    cursor: pointer;
+
+    transition: 0.15s;
+
+}
+
+.show-new-project-container:hover{
+    background-color: #2a2a2a;
+    scale: 1.1;
+}
+
+
+.new-project{
+    background-color: var(--secondary-color);
+    width: 80%;
+    color: #315098;
+    border-radius: 10px;
+    padding: 10px 20px;
+    position: absolute;
+    z-index: 10;
+    transform: scale(0);
+}
+
+.new-project> input{
+    width: 100%;
+
+    margin: 5px 0;
+    padding: 5px 3px;
+
+    border: 1px solid var(--main-color);
+
+    border-radius: 5px;
+
+    background-color: #dcdcdc;
+}
+
+.new-project-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.new-project-buttons > button{
+    appearance: none;
+    border: none;
+
+    border-radius: 5px;
+
+    background-color: var(--main-color);
+    color: var(--text-color);
+
+    padding: 5px 8px;
+    margin-top: 5px;
+
+    cursor: pointer;
+}
+
+
+
+/* right container styling */
+
+.project-name{
+    margin: 15px 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: default;
+}
+
+
+
+
+/* todo card */
+
+.todo-container{
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 15px 30px;
+}
+
+.todo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+
+    background-color: var(--compliment);
+
+    height: 40px;
+    padding: 5px 40px;
+    border-radius: 10px;
+
+}
+
+.details-btn{
+    appearance: none;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    color: inherit;
+}
+
+.red{
+    background-color: rgba(255, 0, 0, 0.3);
+
+    color: red;
+}
+
+.yellow{
+    background-color: rgba(247, 235, 0, 0.3);
+    color: rgb(247, 177, 0);
+}
+
+.green{
+    background-color: rgb(4, 255, 4, 0.3);
+    color: green;
+}
+
+.todo p{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.delete-todo{
+    cursor: pointer;
+}
+
+
+.todo div{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+
+/* details container */
+
+.details-container{
+    height: 250px;
+    width: 600px;
+    
+    background-color: var(--main-color);
+    color: var(--text-color);
+    
+    border-radius: 10px;
+    border: .5px solid var(--compliment);
+    
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 10;
+    
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s;
+    
+    text-align: center;
+    padding-inline: 10px;
+    
+}
+
+.details-container.active{
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.details-container h2, .details-container p{
+    margin: 5px;
+    line-height: 1.5;
+}
+
+/* overlay */
+.overlay{
+    position: absolute;
+    inset: 0;
+    background-color: var(--main-color);
+    mix-blend-mode:hard-light;
+    transform: scale(0);
+    z-index: 0;
+}
+
+.overlay.active{
+    transform: scale(1);
+}
+
+
+/* footer */
+
+.right{
+    position: relative;
+}
+
+.footer {
+    position: absolute;
+    bottom: 10px;
+    right: 30px;
+    margin-top: 50px;
+  }
+  
+  .footer img {
+    width: 40px;
+    aspect-ratio: 1/1;
+    transition: transform 0.2s ease-in-out;
+  }
+   .footer img:hover{
+    transform: scale(1.2);
+   }
