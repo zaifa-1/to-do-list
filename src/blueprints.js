@@ -43,7 +43,6 @@ export class Overlay{  //active and deactivate the overlay
                 newListItem.createProjectElement(box)
             }
         }
-        console.log(storageUnit)
         } 
     }
          
