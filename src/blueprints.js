@@ -38,6 +38,7 @@ export class Overlay{  //active and deactivate the overlay
         if (getFromLocalStorage) {
         storageUnit = getFromLocalStorage;
         const newListItem= new Projects()
+        newListItem.manageTodaysTasks()
         for(let box in storageUnit){
             if(box !== 'Today'){
                 newListItem.createProjectElement(box)
